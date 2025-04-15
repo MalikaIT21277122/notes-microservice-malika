@@ -1,0 +1,35 @@
+name: CI/CD - Notes Microservice
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🔄 Checkout code
+      uses: actions/checkout@v3
+
+    - name: 📦 Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📥 Install dependencies
+      run: npm install
+
+    - name: ✅ Lint check 
+      run: echo "Lint check skipped - no linter configured"
+
+    - name: 🐳 Build Docker image
+      run: docker build -t notes-microservice .
+
+    - name: ✅ Test service 
+      run: echo "Test step skipped - no test cases implemented"
+
+    - name: ✅ CI Successful
+      run: echo "CI pipeline ran successfully 🎉"
